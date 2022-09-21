@@ -1,3 +1,5 @@
+@use "abstracts" as *;
+
 *,
 ::after,
 ::before {
@@ -5,12 +7,24 @@
   padding: 0;
   box-sizing: inherit;
 }
-
+:root {
+  --clr-white: hsl(0, 0%, 100%);
+  --clr-red: hsl(0, 100%, 66%);
+  --clr-light-violet: hsl(270, 3%, 87%);
+  --clr-dark-violet: hsl(279, 6%, 55%);
+  --clr-very-dark-violet: hsl(278, 68%, 11%);
+}
 html {
   font-size: 62.5%;
 }
 
 body {
+  background-image: url(../../images/bg-main-desktop.png);
+  background-repeat: no-repeat;
+  background-position: left;
   box-sizing: border-box;
   font-family: "Space Grotesk", sans-serif;
+  min-height: 100vh;
+  @include flex(intial, center, center, 0);
+  position: relative;
 }

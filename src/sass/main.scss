@@ -1,2 +1,124 @@
 @use "abstracts" as *;
 @use "base" as *;
+
+.card-details {
+  &__container {
+    display: flex;
+    @include flex(row, space-evenly, center, 10rem);
+  }
+
+  &__img-front-box,
+  &__img-back-box {
+    position: relative;
+    width: 40rem;
+    height: 21rem;
+  }
+
+  &__img-front,
+  &__img-back {
+    width: 40rem;
+    height: 21rem;
+  }
+
+  &__img-logo,
+  &__number,
+  &__name,
+  &__exp-date,
+  &__cvc {
+    position: absolute;
+  }
+
+  &__img-logo {
+    top: 10%;
+    left: 6%;
+    width: 7rem;
+  }
+
+  &__number,
+  &__name,
+  &__exp-date,
+  &__cvc {
+    color: var(--clr-white);
+  }
+
+  &__number {
+    top: 51.5%;
+    transform: translateX(7.5%);
+    font-size: 2.6rem;
+    letter-spacing: 2.5px;
+  }
+
+  &__name,
+  &__exp-date,
+  &__cvc {
+    font-size: 1.2rem;
+    letter-spacing: 1.5px;
+  }
+  &__name,
+  &__exp-date {
+    bottom: 13.5%;
+  }
+
+  &__name {
+    left: 6.5%;
+  }
+
+  &__exp-date {
+    right: 6.5%;
+  }
+
+  &__img-back-box {
+    margin-top: 2.4rem;
+    margin-left: 8rem;
+  }
+
+  &__cvc {
+    right: 12.5%;
+    top: 45%;
+  }
+
+  &__form {
+    width: 40rem;
+  }
+
+  &__form-group-exp-cvc {
+    @include flex(row, intial, center, 2.4rem);
+    margin-bottom: 2rem;
+  }
+
+  &__form-label {
+    display: block;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    color: var(--clr-very-dark-violet);
+  }
+
+  &__form-input {
+    border-radius: 7.5px;
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 2.4rem;
+  }
+
+  &__inputs-exp {
+    @include flex(row, intial, center, 1.2rem);
+  }
+
+  &__form-group-cvc {
+    width: 30rem;
+  }
+  &__form-submit-button {
+    width: 100%;
+    padding: 1.6rem;
+    background-color: var(--clr-very-dark-violet);
+    border: none;
+    border-radius: 7.5px;
+    color: var(--clr-light-violet);
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+  }
+}
