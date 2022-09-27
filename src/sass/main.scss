@@ -90,17 +90,73 @@
     display: block;
     font-size: 1.4rem;
     text-transform: uppercase;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.8rem;
     letter-spacing: 1.5px;
     font-weight: 500;
     color: var(--clr-very-dark-violet);
   }
 
+  ::placeholder,
+  ::-moz-placeholder,
+  :-moz-placeholder,
+  ::-webkit-input-placeholder {
+    color: var(--clr-dark-violet);
+    font-size: 1.6rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+  }
+
   &__form-input {
+    border: 2px solid var(--clr-light-violet);
     border-radius: 7.5px;
     width: 100%;
-    padding: 0.8rem;
+    padding: 1.2rem 1.6rem;
+    font-size: 1.6rem;
+    color: var(--clr-very-dark-violet);
+    font-weight: 500;
+    letter-spacing: 1.5px;
     margin-bottom: 2.4rem;
+    outline: none;
+
+    &:focus {
+      border-color: transparent;
+      background-image: linear-gradient(var(--clr-white), var(--clr-white)),
+        linear-gradient(
+          to right,
+          var(--clr-blue-gradient),
+          var(--clr-purple-gradient)
+        );
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+    }
+  }
+  &__form-group {
+    position: relative;
+  }
+
+  &__error &__form-input {
+    &:focus {
+      border-color: var(--clr-red);
+    }
+  }
+
+  &__error-msg {
+    color: var(--clr-red);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      appearance: none;
+      margin: 0;
+    }
   }
 
   &__inputs-exp {
@@ -108,8 +164,9 @@
   }
 
   &__form-group-cvc {
-    width: 30rem;
+    width: 50rem;
   }
+
   &__form-submit-button {
     width: 100%;
     padding: 1.6rem;

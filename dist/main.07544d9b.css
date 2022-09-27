@@ -12,6 +12,8 @@
   --clr-light-violet: hsl(270, 3%, 87%);
   --clr-dark-violet: hsl(279, 6%, 55%);
   --clr-very-dark-violet: hsl(278, 68%, 11%);
+  --clr-blue-gradient: hsl(249, 99%, 64%);
+  --clr-purple-gradient: hsl(278, 94%, 30%);
 }
 
 html {
@@ -100,16 +102,59 @@ body {
   display: block;
   font-size: 1.4rem;
   text-transform: uppercase;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.8rem;
   letter-spacing: 1.5px;
   font-weight: 500;
   color: var(--clr-very-dark-violet);
 }
+.card-details ::placeholder,
+.card-details ::-moz-placeholder,
+.card-details :-moz-placeholder,
+.card-details ::-webkit-input-placeholder {
+  color: var(--clr-dark-violet);
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+}
 .card-details__form-input {
+  border: 2px solid var(--clr-light-violet);
   border-radius: 7.5px;
   width: 100%;
-  padding: 0.8rem;
+  padding: 1.2rem 1.6rem;
+  font-size: 1.6rem;
+  color: var(--clr-very-dark-violet);
+  font-weight: 500;
+  letter-spacing: 1.5px;
   margin-bottom: 2.4rem;
+  outline: none;
+}
+.card-details__form-input:focus {
+  border-color: transparent;
+  background-image: linear-gradient(var(--clr-white), var(--clr-white)), linear-gradient(to right, var(--clr-blue-gradient), var(--clr-purple-gradient));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+.card-details__form-group {
+  position: relative;
+}
+.card-details__error .card-details__form-input:focus {
+  border-color: var(--clr-red);
+}
+.card-details__error-msg {
+  color: var(--clr-red);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.card-details input[type=number] {
+  -moz-appearance: textfield;
+}
+.card-details input[type=number]::-webkit-inner-spin-button, .card-details input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
 }
 .card-details__inputs-exp {
   display: flex;
@@ -118,7 +163,7 @@ body {
   gap: 1.2rem;
 }
 .card-details__form-group-cvc {
-  width: 30rem;
+  width: 50rem;
 }
 .card-details__form-submit-button {
   width: 100%;

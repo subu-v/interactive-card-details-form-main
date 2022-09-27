@@ -61,9 +61,12 @@
                 id="card-name"
                 required
               />
+              <p class="card-details__error-msg">Can't be blank</p>
             </div>
 
-            <div class="card-details__form-group">
+            <div
+              class="card-details__form-group card-details__form-group-number"
+            >
               <label for="card-number" class="card-details__form-label"
                 >card number</label
               ><input
@@ -73,12 +76,13 @@
                 id="card-number"
                 required
               />
+              <p class="card-details__error-msg">Wrong format, numbers only</p>
             </div>
 
             <div
-              class="card-details__form-group card-details__form-group-exp-cvc"
+              class="card-details__form-group card-details__form-group-exp-cvc card-details__error"
             >
-              <div class="">
+              <div class="card-details__form-group-number">
                 <label for="card-exp-date" class="card-details__form-label">
                   exp. date (mm/yy)
                 </label>
@@ -98,8 +102,11 @@
                     required
                   />
                 </div>
+                <p class="card-details__error-msg">Can't be blank</p>
               </div>
-              <div class="card-details__form-group-cvc">
+              <div
+                class="card-details__form-group-cvc card-details__form-group-number"
+              >
                 <label for="card-cvc" class="card-details__form-label"
                   >cvc</label
                 ><input
@@ -109,6 +116,7 @@
                   id="card-cvc"
                   required
                 />
+                <p class="card-details__error-msg">Can't be blank</p>
               </div>
             </div>
             <input
