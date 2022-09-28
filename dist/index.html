@@ -38,23 +38,27 @@
             </div>
 
             <div class="card-details__form-group card-details__form-group-number">
-              <label for="card-number" class="card-details__form-label">card number</label><input type="number" class="card-details__form-input" placeholder="e.g. 1234 5678 9123 0000" id="card-number" required="">
-              <p class="card-details__error-msg">Wrong format, numbers only</p>
+              <label for="card-number" class="card-details__form-label">card number</label>
+              <input type="text" class="card-details__form-input" placeholder="e.g. 1234 5678 9123 0000" id="card-number" required="">
+              <p class="card-details__error-msg" id="error-msg">
+                Wrong format, numbers only
+              </p>
             </div>
 
-            <div class="card-details__form-group card-details__form-group-exp-cvc card-details__error">
-              <div class="card-details__form-group-number">
-                <label for="card-exp-date" class="card-details__form-label">
+            <div class="card-details__form-group card-details__form-group--exp-cvc">
+              <div class="">
+                <label for="card-exp-month" class="card-details__form-label">
                   exp. date (mm/yy)
                 </label>
                 <div class="card-details__inputs-exp">
-                  <input type="number" class="card-details__form-input" placeholder="MM" id="card-exp-date" required="">
-                  <input type="number" class="card-details__form-input" placeholder="YY" id="card-exp-date" required="">
+                  <input type="number" class="card-details__form-input card-exp-month" placeholder="MM" id="card-exp-month" required="">
+                  <input type="number" class="card-details__form-input card-exp-year" placeholder="YY" id="card-exp-year" required="">
+                  <p class="card-details__error-msg">Can't be blank</p>
                 </div>
-                <p class="card-details__error-msg">Can't be blank</p>
               </div>
-              <div class="card-details__form-group-cvc card-details__form-group-number">
-                <label for="card-cvc" class="card-details__form-label">cvc</label><input type="number" class="card-details__form-input" placeholder="e.g. 123" id="card-cvc" required="">
+              <div class="card-details__form-group card-details__form-group--cvc">
+                <label for="card-cvc" class="card-details__form-label">cvc</label>
+                <input type="number" class="card-details__form-input" placeholder="e.g. 123" id="card-cvc" required="">
                 <p class="card-details__error-msg">Can't be blank</p>
               </div>
             </div>

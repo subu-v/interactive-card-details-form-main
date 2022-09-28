@@ -43,7 +43,7 @@
 
   &__number {
     top: 51.5%;
-    transform: translateX(7.5%);
+    left: 6.5%;
     font-size: 2.6rem;
     letter-spacing: 2.5px;
   }
@@ -79,11 +79,6 @@
 
   &__form {
     width: 40rem;
-  }
-
-  &__form-group-exp-cvc {
-    @include flex(row, intial, center, 2.4rem);
-    margin-bottom: 2rem;
   }
 
   &__form-label {
@@ -130,13 +125,21 @@
       background-clip: padding-box, border-box;
     }
   }
-  &__form-group {
-    position: relative;
-  }
 
-  &__error &__form-input {
+  &__form-input-invalid {
+    border-color: var(--clr-red);
     &:focus {
       border-color: var(--clr-red);
+    }
+  }
+  &__form-group {
+    position: relative;
+    &--exp-cvc {
+      @include flex(row, intial, center, 2.4rem);
+      margin-bottom: 2rem;
+    }
+    &--cvc {
+      width: 50rem;
     }
   }
 
@@ -147,6 +150,8 @@
     bottom: 0;
     font-size: 1.2rem;
     font-weight: 500;
+    opacity: 0;
+    transition: all 0.3s ease-in;
   }
 
   input[type="number"] {
@@ -161,10 +166,6 @@
 
   &__inputs-exp {
     @include flex(row, intial, center, 1.2rem);
-  }
-
-  &__form-group-cvc {
-    width: 50rem;
   }
 
   &__form-submit-button {

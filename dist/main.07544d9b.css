@@ -63,7 +63,7 @@ body {
 }
 .card-details__number {
   top: 51.5%;
-  transform: translateX(7.5%);
+  left: 6.5%;
   font-size: 2.6rem;
   letter-spacing: 2.5px;
 }
@@ -90,13 +90,6 @@ body {
 }
 .card-details__form {
   width: 40rem;
-}
-.card-details__form-group-exp-cvc {
-  display: flex;
-  justify-content: intial;
-  align-items: center;
-  gap: 2.4rem;
-  margin-bottom: 2rem;
 }
 .card-details__form-label {
   display: block;
@@ -134,11 +127,24 @@ body {
   background-origin: border-box;
   background-clip: padding-box, border-box;
 }
+.card-details__form-input-invalid {
+  border-color: var(--clr-red);
+}
+.card-details__form-input-invalid:focus {
+  border-color: var(--clr-red);
+}
 .card-details__form-group {
   position: relative;
 }
-.card-details__error .card-details__form-input:focus {
-  border-color: var(--clr-red);
+.card-details__form-group--exp-cvc {
+  display: flex;
+  justify-content: intial;
+  align-items: center;
+  gap: 2.4rem;
+  margin-bottom: 2rem;
+}
+.card-details__form-group--cvc {
+  width: 50rem;
 }
 .card-details__error-msg {
   color: var(--clr-red);
@@ -147,6 +153,8 @@ body {
   bottom: 0;
   font-size: 1.2rem;
   font-weight: 500;
+  opacity: 0;
+  transition: all 0.3s ease-in;
 }
 .card-details input[type=number] {
   -moz-appearance: textfield;
@@ -161,9 +169,6 @@ body {
   justify-content: intial;
   align-items: center;
   gap: 1.2rem;
-}
-.card-details__form-group-cvc {
-  width: 50rem;
 }
 .card-details__form-submit-button {
   width: 100%;

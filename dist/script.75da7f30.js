@@ -118,7 +118,99 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"script.js":[function(require,module,exports) {
-var formSubmitButton = document.querySelector(".card-details__form-submit-button");
+"use strict";
+
+var inputCardName = document.getElementById("card-name");
+var inputCardNumber = document.getElementById("card-number");
+var inputCardExpMonth = document.querySelector(".card-exp-month");
+var inputCardExpYear = document.querySelector(".card-exp-year");
+var inputCardCvc = document.getElementById("card-cvc");
+var cardImageName = document.querySelector(".card-details__name");
+var cardImageNumber = document.querySelector(".card-details__number");
+var cardImageExpDate = document.querySelector(".card-details__exp-date");
+var cardImageCvc = document.querySelector(".card-details__cvc");
+
+var checkInputs = function checkInputs(ele, margins) {
+  if (ele.validity.valueMissing) {
+    printErrorMsg(ele, "Can't be blank", margins);
+  } else if (!Number(ele.value.split(" ").join(""))) {
+    printErrorMsg(ele, "Wrong format, numbers only", margins);
+  } else {
+    successState(ele, margins);
+  }
+};
+
+var printErrorMsg = function printErrorMsg(inputEle, msg, margins) {
+  var errorMsgEle = inputEle.parentElement.lastElementChild;
+  errorMsgEle.style.opacity = 100;
+  errorMsgEle.textContent = msg;
+  inputEle.classList.add("card-details__form-input-invalid");
+
+  if (margins) {
+    errorMsgEle.style.bottom = "24px";
+    inputEle.style.marginBottom = "48px";
+  }
+};
+
+var successState = function successState(inputEle, margins) {
+  var _inputEle$previousEle;
+
+  var errorMsgEle = inputEle.parentElement.lastElementChild;
+
+  if (!inputEle.nextElementSibling.classList.contains("card-details__form-input-invalid") && !((_inputEle$previousEle = inputEle.previousElementSibling) !== null && _inputEle$previousEle !== void 0 && _inputEle$previousEle.classList.contains("card-details__form-input-invalid"))) {
+    /*
+      The expDate and expYear inputs, both together has only one error msg element,
+      without this above condition, let's say the user first enters a value for the expDate and then 
+    
+    */
+    errorMsgEle.style.opacity = 0;
+  }
+
+  inputEle.classList.remove("card-details__form-input-invalid");
+
+  if (margins) {
+    errorMsgEle.style.bottom = "0";
+    inputEle.style.marginBottom = "24px";
+  }
+};
+
+var insertCardNumber = function insertCardNumber(val) {
+  var limit = 0;
+  var newNum = "";
+  val.split("").forEach(function (letter, index) {
+    ++limit;
+    newNum += letter;
+
+    if (limit % 4 === 0) {
+      newNum += " ";
+    }
+  });
+  return newNum;
+};
+
+inputCardName.addEventListener("input", function (e) {
+  e.preventDefault();
+  checkInputs(inputCardName, true);
+  cardImageName.textContent = inputCardName.value.toUpperCase();
+});
+inputCardNumber.addEventListener("change", function (e) {
+  e.preventDefault();
+  checkInputs(inputCardNumber, true);
+  cardImageNumber.textContent = insertCardNumber(inputCardNumber.value);
+});
+inputCardExpMonth.addEventListener("input", function (e) {
+  e.preventDefault();
+  checkInputs(inputCardExpMonth, false);
+});
+inputCardExpYear.addEventListener("input", function (e) {
+  e.preventDefault();
+  checkInputs(inputCardExpYear, false);
+});
+inputCardCvc.addEventListener("input", function (e) {
+  e.preventDefault();
+  checkInputs(inputCardCvc, false);
+  cardImageCvc.textContent = inputCardCvc.value;
+});
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -147,7 +239,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62260" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61127" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
