@@ -8,13 +8,40 @@ const inputCardCvc = document.getElementById("card-cvc");
 
 const cardImageName = document.querySelector(".card-details__name");
 const cardImageNumber = document.querySelector(".card-details__number");
-const cardImageExpDate = document.querySelector(".card-details__exp-date");
+const cardImageExpMonth = document.querySelector(".card-details__exp-month");
+const cardImageExpYear = document.querySelector(".card-details__exp-year");
 const cardImageCvc = document.querySelector(".card-details__cvc");
 
-const checkInputs = (ele, margins) => {
+const formElement = document.querySelector(".card-details__form");
+const formCompletedState = document.querySelector(".card-details__completed");
+
+const formSumbitBtn = document.querySelector(".card-details__sumbit-btn");
+const formContinueBtn = document.querySelector(".card-details__continue-btn");
+
+const checkInputForCardNumber = (ele, margins) => {
   if (ele.validity.valueMissing) {
     printErrorMsg(ele, "Can't be blank", margins);
   } else if (!Number(ele.value.split(" ").join(""))) {
+    printErrorMsg(ele, "Wrong format, numbers only", margins);
+  } else if (removeWhiteSpace(ele.value).length !== 16) {
+    printErrorMsg(ele, "Wrong card number, enter 16 digits", margins);
+  } else {
+    successState(ele, margins);
+  }
+};
+
+const checkInputForText = (ele, margins) => {
+  if (ele.validity.valueMissing) {
+    printErrorMsg(ele, "Can't be blank", margins);
+  } else {
+    successState(ele, margins);
+  }
+};
+
+const checkInputForOthers = (ele, margins) => {
+  if (ele.validity.valueMissing) {
+    printErrorMsg(ele, "Can't be blank", margins);
+  } else if (ele.validity.badInput) {
     printErrorMsg(ele, "Wrong format, numbers only", margins);
   } else {
     successState(ele, margins);
@@ -56,10 +83,19 @@ const successState = (inputEle, margins) => {
   }
 };
 
+const removeWhiteSpace = (str) => {
+  let newLetterArray = [];
+  str.split("").forEach((letter) => {
+    letter !== " " && newLetterArray.push(letter);
+  });
+  return newLetterArray;
+};
+
 const insertCardNumber = (val) => {
   let limit = 0;
   let newNum = "";
-  val.split("").forEach((letter, index) => {
+  const arrayOfLetters = removeWhiteSpace(val);
+  arrayOfLetters.forEach((letter) => {
     ++limit;
     newNum += letter;
     if (limit % 4 === 0) {
@@ -69,30 +105,44 @@ const insertCardNumber = (val) => {
   return newNum;
 };
 
-inputCardName.addEventListener("input", (e) => {
+inputCardName.addEventListener("change", (e) => {
   e.preventDefault();
-  checkInputs(inputCardName, true);
+  checkInputForText(inputCardName, true);
   cardImageName.textContent = inputCardName.value.toUpperCase();
 });
 
 inputCardNumber.addEventListener("change", (e) => {
   e.preventDefault();
-  checkInputs(inputCardNumber, true);
+  checkInputForCardNumber(inputCardNumber, true);
   cardImageNumber.textContent = insertCardNumber(inputCardNumber.value);
 });
 
-inputCardExpMonth.addEventListener("input", (e) => {
+inputCardExpMonth.addEventListener("change", (e) => {
   e.preventDefault();
-  checkInputs(inputCardExpMonth, false);
+  checkInputForOthers(inputCardExpMonth, false);
+  cardImageExpMonth.textContent = inputCardExpMonth.value;
 });
 
-inputCardExpYear.addEventListener("input", (e) => {
+inputCardExpYear.addEventListener("change", (e) => {
   e.preventDefault();
-  checkInputs(inputCardExpYear, false);
+  checkInputForOthers(inputCardExpYear, false);
+  cardImageExpYear.textContent = inputCardExpYear.value;
 });
 
-inputCardCvc.addEventListener("input", (e) => {
+inputCardCvc.addEventListener("change", (e) => {
   e.preventDefault();
-  checkInputs(inputCardCvc, false);
+  checkInputForOthers(inputCardCvc, false);
   cardImageCvc.textContent = inputCardCvc.value;
+});
+
+formSumbitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  formElement.style.display = "none";
+  formCompletedState.style.display = "block";
+});
+
+formContinueBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  formElement.style.display = "block";
+  formCompletedState.style.display = "none";
 });

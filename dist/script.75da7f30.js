@@ -127,13 +127,38 @@ var inputCardExpYear = document.querySelector(".card-exp-year");
 var inputCardCvc = document.getElementById("card-cvc");
 var cardImageName = document.querySelector(".card-details__name");
 var cardImageNumber = document.querySelector(".card-details__number");
-var cardImageExpDate = document.querySelector(".card-details__exp-date");
+var cardImageExpMonth = document.querySelector(".card-details__exp-month");
+var cardImageExpYear = document.querySelector(".card-details__exp-year");
 var cardImageCvc = document.querySelector(".card-details__cvc");
+var formElement = document.querySelector(".card-details__form");
+var formCompletedState = document.querySelector(".card-details__completed");
+var formSumbitBtn = document.querySelector(".card-details__sumbit-btn");
+var formContinueBtn = document.querySelector(".card-details__continue-btn");
 
-var checkInputs = function checkInputs(ele, margins) {
+var checkInputForCardNumber = function checkInputForCardNumber(ele, margins) {
   if (ele.validity.valueMissing) {
     printErrorMsg(ele, "Can't be blank", margins);
   } else if (!Number(ele.value.split(" ").join(""))) {
+    printErrorMsg(ele, "Wrong format, numbers only", margins);
+  } else if (removeWhiteSpace(ele.value).length !== 16) {
+    printErrorMsg(ele, "Wrong card number, enter 16 digits", margins);
+  } else {
+    successState(ele, margins);
+  }
+};
+
+var checkInputForText = function checkInputForText(ele, margins) {
+  if (ele.validity.valueMissing) {
+    printErrorMsg(ele, "Can't be blank", margins);
+  } else {
+    successState(ele, margins);
+  }
+};
+
+var checkInputForOthers = function checkInputForOthers(ele, margins) {
+  if (ele.validity.valueMissing) {
+    printErrorMsg(ele, "Can't be blank", margins);
+  } else if (ele.validity.badInput) {
     printErrorMsg(ele, "Wrong format, numbers only", margins);
   } else {
     successState(ele, margins);
@@ -174,10 +199,19 @@ var successState = function successState(inputEle, margins) {
   }
 };
 
+var removeWhiteSpace = function removeWhiteSpace(str) {
+  var newLetterArray = [];
+  str.split("").forEach(function (letter) {
+    letter !== " " && newLetterArray.push(letter);
+  });
+  return newLetterArray;
+};
+
 var insertCardNumber = function insertCardNumber(val) {
   var limit = 0;
   var newNum = "";
-  val.split("").forEach(function (letter, index) {
+  var arrayOfLetters = removeWhiteSpace(val);
+  arrayOfLetters.forEach(function (letter) {
     ++limit;
     newNum += letter;
 
@@ -188,28 +222,40 @@ var insertCardNumber = function insertCardNumber(val) {
   return newNum;
 };
 
-inputCardName.addEventListener("input", function (e) {
+inputCardName.addEventListener("change", function (e) {
   e.preventDefault();
-  checkInputs(inputCardName, true);
+  checkInputForText(inputCardName, true);
   cardImageName.textContent = inputCardName.value.toUpperCase();
 });
 inputCardNumber.addEventListener("change", function (e) {
   e.preventDefault();
-  checkInputs(inputCardNumber, true);
+  checkInputForCardNumber(inputCardNumber, true);
   cardImageNumber.textContent = insertCardNumber(inputCardNumber.value);
 });
-inputCardExpMonth.addEventListener("input", function (e) {
+inputCardExpMonth.addEventListener("change", function (e) {
   e.preventDefault();
-  checkInputs(inputCardExpMonth, false);
+  checkInputForOthers(inputCardExpMonth, false);
+  cardImageExpMonth.textContent = inputCardExpMonth.value;
 });
-inputCardExpYear.addEventListener("input", function (e) {
+inputCardExpYear.addEventListener("change", function (e) {
   e.preventDefault();
-  checkInputs(inputCardExpYear, false);
+  checkInputForOthers(inputCardExpYear, false);
+  cardImageExpYear.textContent = inputCardExpYear.value;
 });
-inputCardCvc.addEventListener("input", function (e) {
+inputCardCvc.addEventListener("change", function (e) {
   e.preventDefault();
-  checkInputs(inputCardCvc, false);
+  checkInputForOthers(inputCardCvc, false);
   cardImageCvc.textContent = inputCardCvc.value;
+});
+formSumbitBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  formElement.style.display = "none";
+  formCompletedState.style.display = "block";
+});
+formContinueBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  formElement.style.display = "block";
+  formCompletedState.style.display = "none";
 });
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -239,7 +285,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61127" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54670" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

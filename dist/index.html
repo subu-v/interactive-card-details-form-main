@@ -21,7 +21,9 @@
               <img class="card-details__img-front" src="/bg-card-front.7041afee.png" alt="">
               <p class="card-details__number">0000 0000 0000 0000</p>
               <p class="card-details__name">JANE APPLESEED</p>
-              <p class="card-details__exp-date">00/00</p>
+              <p class="card-details__exp-date">
+                <span class="card-details__exp-month">00</span>/<span class="card-details__exp-year">00</span>
+              </p>
               <img class="card-details__img-logo" src="/card-logo.b15eefb0.svg" alt="">
             </div>
             <div class="card-details__img-back-box">
@@ -62,8 +64,16 @@
                 <p class="card-details__error-msg">Can't be blank</p>
               </div>
             </div>
-            <input type="submit" value="Confirm" class="card-details__form-submit-button">
+            <a href="#" class="card-details__button card-details__sumbit-btn">Confirm</a>
           </form>
+          <div class="card-details__completed">
+            <img src="/icon-complete.01f82008.svg" alt="" class="card-details__completed--img">
+            <h2 class="card-details__completed--msg">THANK YOU!</h2>
+            <p class="card-details__completed--desc">
+              We've added your card details
+            </p>
+            <a href="#" class="card-details__button card-details__continue-btn">Continue</a>
+          </div>
         </div>
       </div>
     </main>

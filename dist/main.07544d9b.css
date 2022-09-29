@@ -55,7 +55,7 @@ body {
 }
 .card-details__img-logo {
   top: 10%;
-  left: 6%;
+  left: 7%;
   width: 7rem;
 }
 .card-details__number, .card-details__name, .card-details__exp-date, .card-details__cvc {
@@ -63,7 +63,7 @@ body {
 }
 .card-details__number {
   top: 51.5%;
-  left: 6.5%;
+  left: 7.5%;
   font-size: 2.6rem;
   letter-spacing: 2.5px;
 }
@@ -75,7 +75,7 @@ body {
   bottom: 13.5%;
 }
 .card-details__name {
-  left: 6.5%;
+  left: 7.5%;
 }
 .card-details__exp-date {
   right: 6.5%;
@@ -170,7 +170,7 @@ body {
   align-items: center;
   gap: 1.2rem;
 }
-.card-details__form-submit-button {
+.card-details__button {
   width: 100%;
   padding: 1.6rem;
   background-color: var(--clr-very-dark-violet);
@@ -180,6 +180,29 @@ body {
   font-size: 1.4rem;
   font-weight: 500;
   letter-spacing: 1.5px;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+.card-details__completed {
+  display: none;
+  width: 40rem;
+  text-align: center;
+}
+.card-details__completed--img {
+  margin-bottom: 2.4rem;
+}
+.card-details__completed--msg {
+  font-size: 3rem;
+  font-weight: 500;
+  letter-spacing: 2.4px;
+  color: var(--clr-very-dark-violet);
+  margin-bottom: 1.2rem;
+}
+.card-details__completed--desc {
+  font-size: 1.8rem;
+  color: var(--clr-dark-violet);
+  margin-bottom: 4.8rem;
 }
 
 /*# sourceMappingURL=/main.07544d9b.css.map */
